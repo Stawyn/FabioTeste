@@ -33,6 +33,12 @@ Total: 16 GB (15.986 GB disponíveis)
 - Livre: ~12.8 GB durante os testes
 - Buffer/Cache: ~1.9 GB
 - Swap: Desabilitado (0 GB)
+
+#Disco
+Total: 500 GB
+Modelo - SSD Kingston NV3 NVMe
+Leitura - 5000 MB/s
+Gravação - 3000 MB/s
 ```
 
 #### 💾 Configuração de Armazenamento
@@ -55,7 +61,6 @@ Distribuição: Ubuntu 24.04.3 Desktop
 - Interface: GNOME Desktop Environment
 - Virtualização: Oracle VirtualBox
 ```
-
 
 ## Metodologia
 
@@ -421,70 +426,6 @@ sudo ntfsundelete /tmp/recovery_ntfs.img -u -i [inode_number]
 - **Para recursos avançados em Windows**: NTFS
 - **Para recuperação de dados**: NTFS > EXT4 > FAT32
 
-### Considerações Futuras
-
-- Avaliar sistemas de arquivos modernos (Btrfs, ZFS, XFS)
-- Testes com cargas de trabalho mais específicas
-- Análise de consumo energético
-- Testes de fragmentação a longo prazo
-
-## Script de Automação dos Testes
-
-```bash
-#!/bin/bash
-# automation_filesystem_test.sh
-
-echo "=== TESTE AUTOMATIZADO DE SISTEMAS DE ARQUIVOS ==="
-
-# Função para executar testes dd
-run_dd_tests() {
-    local mountpoint=$1
-    local fs_name=$2
-    
-    echo "Testando $fs_name com dd..."
-    
-    # Teste de escrita
-    echo "Escrita sequencial:"
-    sudo dd if=/dev/zero of=$mountpoint/testfile bs=1M count=100 oflag=direct
-    
-    # Teste de leitura
-    echo "Leitura sequencial:"
-    sudo dd if=$mountpoint/testfile of=/dev/null bs=1M iflag=direct
-    
-    sudo rm $mountpoint/testfile
-}
-
-# Função para executar testes fio
-run_fio_tests() {
-    local mountpoint=$1
-    local fs_name=$2
-    
-    echo "Testando $fs_name com fio..."
-    
-    # Teste de escrita sequencial
-    sudo fio --name=write_test --directory=$mountpoint --rw=write --bs=1M --size=100M --numjobs=1 --runtime=30 --group_reporting
-    
-    # Teste de leitura sequencial
-    sudo fio --name=read_test --directory=$mountpoint --rw=read --bs=1M --size=100M --numjobs=1 --runtime=30 --group_reporting
-    
-    # Teste de escrita aleatória
-    sudo fio --name=randwrite_test --directory=$mountpoint --rw=randwrite --bs=4k --size=100M --numjobs=1 --runtime=30 --group_reporting
-    
-    # Teste de leitura aleatória
-    sudo fio --name=randread_test --directory=$mountpoint --rw=randread --bs=4k --size=100M --numjobs=1 --runtime=30 --group_reporting
-}
-
-# Executar testes para todos os sistemas
-for fs in ext4 fat32 ntfs; do
-    echo "=== TESTANDO $fs ==="
-    run_dd_tests /mnt/${fs}_test $fs
-    run_fio_tests /mnt/${fs}_test $fs
-    sudo bonnie++ -d /mnt/${fs}_test -u root -s 100M -r 50M
-done
-
-echo "=== TESTES CONCLUÍDOS ==="
-```
-
 ## Referências
 
 1. Bovet, D. P., & Cesati, M. (2005). Understanding the Linux Kernel. O'Reilly Media.
@@ -497,7 +438,7 @@ echo "=== TESTES CONCLUÍDOS ==="
 
 ---
 
-**Autores**: [Inserir nomes dos integrantes do grupo]
+**Autores**: João Victor Brandini
 **Data**: 18 de Setembro de 2025
-**Curso**: [Inserir curso]
-**Disciplina**: [Inserir disciplina]
+**Curso**: Sistema de informação
+**Disciplina**: Sistemas Operacionais
