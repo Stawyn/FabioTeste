@@ -15,6 +15,48 @@
 
 Este documento apresenta uma análise comparativa detalhada entre três sistemas de arquivos amplamente utilizados: EXT4, FAT32 e NTFS. O estudo aborda características técnicas, desempenho, compatibilidade e métodos de recuperação de dados.
 
+### Hardware Utilizado
+
+#### 🖥️ Especificações do Sistema
+```bash
+# Processador
+AMD Ryzen 9 5900XT 16-Core Processor
+- Arquitetura: x86_64
+- Cores Físicos: 24 cores
+- Threads: 24 (1 thread por core)
+- Clock Base: ~3.5 GHz (estimado pelo BogoMIPS: 7000.00)
+- Cache: L3 compartilhado (típico em Ryzen 9)
+- Socket: AM4
+
+# Memória RAM
+Total: 16 GB (15.986 GB disponíveis)
+- Livre: ~12.8 GB durante os testes
+- Buffer/Cache: ~1.9 GB
+- Swap: Desabilitado (0 GB)
+```
+
+#### 💾 Configuração de Armazenamento
+```bash
+# Ambiente Virtualizado
+Hypervisor: VirtualBox
+- Tipo de Virtualização: Full virtualization (KVM)
+- Sistema Host: [Sistema do hardware físico]
+- Discos: Loop devices sobre sistema de arquivos host
+```
+
+### Software Environment
+
+#### 🐧 Sistema Operacional
+```bash
+Distribuição: Ubuntu 24.04.3 Desktop
+- Kernel: Linux 6.x (Ubuntu específico)
+- ISO: ubuntu-24.04.3-desktop-amd64.iso
+- Arquitetura: x86_64
+- Interface: GNOME Desktop Environment
+- Virtualização: Oracle VirtualBox
+```
+
+
 ## Metodologia
 
 ### Ferramentas Utilizadas
