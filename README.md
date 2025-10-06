@@ -437,8 +437,3 @@ sudo ntfsundelete /tmp/recovery_ntfs.img -u -i [inode_number]
 7. FAT32 Specification: Microsoft Extensible Firmware Initiative FAT32 File System Specification.
 
 ---
-
-**Autores**: João Victor Brandini
-**Data**: 18 de Setembro de 2025
-**Curso**: Sistema de informação
-**Disciplina**: Sistemas Operacionais
